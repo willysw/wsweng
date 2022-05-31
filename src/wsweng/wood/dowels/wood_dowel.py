@@ -471,7 +471,7 @@ class WoodDowel:
     _STR_REPR = (
         # header
         "WoodDowel ({S} shear):\n"
-        "   Deff     Zpar    Zperp      W          Lm, {TM}            Ls, {TS}\n"
+        "   Deff     Zpar    Zperp      W          Lm, {TM}             Ls, {TS}\n"
         " -------  -------  -------  -------  ------------------  ------------------\n"
         # <-------><-------><-------><-------><------------------><------------------>
         "{De:^9s}{Zt:^9s}{Zp:^9s}{W:^9s}{Lm:^20s}{Ls:^20s}\n"

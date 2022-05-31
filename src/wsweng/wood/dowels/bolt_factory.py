@@ -1,3 +1,8 @@
+from pathlib import Path
+import pandas as pd
+
+from wsweng.data import load_csv
+
 from .wood_dowel import WoodDowel
 
 # TODO: Move all this somewhere useful, YAML?
@@ -5,19 +10,32 @@ _MATERIALS = {
     "DFL": {"G": 0.50},
     "A36": {"G": 7.80, "FE": 87.0e3},
 }
-# REF: NDS, 2015 - Appendix L, Table L1
-_BOLTS = {
-    0.25: {"DR": 0.189, "FYB": 45.0e3},
-    0.3125: {"DR": 0.245, "FYB": 45.0e3},
-    0.375: {"DR": 0.298, "FYB": 45.0e3},
-    0.500: {"DR": 0.406, "FYB": 45.0e3},
-    0.625: {"DR": 0.514, "FYB": 45.0e3},
-    0.750: {"DR": 0.627, "FYB": 45.0e3},
-    0.875: {"DR": 0.739, "FYB": 45.0e3},
-    1.000: {"DR": 0.847, "FYB": 45.0e3},
-}
+
+
+def _load_bolts() -> pd.DataFrame:
+    """ Loads a csv file into a DataFrame mapping nominal diameter
+    as a string to a dictionary of parameters.
+
+    ```text
+    ID         NAME  TYPE       D     DR      FYB       FU       FY
+    ------  ------- -----  ------  -----  -------  -------  -------                                               
+    0.2500   1/4 MB  A307  0.2500  0.189  45000.0  58000.0  36000.0
+    0.3125  5/16 MB  A307  0.3125  0.245  45000.0  58000.0  36000.0
+                                    ...
+    ```
+    REF: NDS, 2015 - Appendix L, Table L1
+    """
+    data = load_csv("bolts.csv").reset_index()
+    data = data[data["TYPE"] == "A307"].sort_values("D")
+    data["ID"] = [f"{di:#.4f}" for di in data["D"]]
+    data.set_index("ID", inplace=True)
+    return data
+
+
+_BOLTS = _load_bolts()
+
 _ALIAS = {
-    "STEEL": {"A36", "A992", "A572"},
+    "A36": {"STEEL"},
 }
 # TODO:
 #   Catch strings of parsable as numbers as specific
@@ -64,9 +82,9 @@ def wood_bolt(
     # Bolt Properties
     # TODO: This should have fail-safe behavior if diameter is not found. Next lowest?
     # For now, just assert the value is in the list.
-    assert diameter in _BOLTS
-    inner_diameter = _BOLTS[diameter]["DR"]
-    bending_stress = _BOLTS[diameter]["FYB"]
+    bolt_data: pd.Series = _BOLTS.loc[f"{diameter:#.4f}"]
+    inner_diameter = bolt_data["DR"]
+    bending_stress = bolt_data["FYB"]
 
     # Materials
     if material is not None:
