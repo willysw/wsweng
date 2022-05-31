@@ -1,4 +1,4 @@
-from dataclasses import dataclass
+from dataclasses import dataclass, KW_ONLY
 from functools import cached_property
 import math
 
@@ -11,6 +11,21 @@ class WoodDowel:
     fyb: float
     lm: float
     ls: float
+    _: KW_ONLY
+    double_shear: bool = False
+
+    def z(self, theta: float = 90.0) -> float:
+        if self.double_shear:
+            raise NotImplementedError
+        else:
+            return min(
+                self.zim(theta),
+                self.zis(theta),
+                self.zii(theta),
+                self.ziiim(theta),
+                self.ziiis(theta),
+                self.ziv(theta),
+            )
 
     # =============================
     # =   Calculated Properties   =
