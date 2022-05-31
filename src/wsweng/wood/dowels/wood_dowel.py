@@ -16,7 +16,12 @@ class WoodDowel:
 
     def z(self, theta: float = 90.0) -> float:
         if self.double_shear:
-            raise NotImplementedError
+            return min(
+                self.zim(theta),
+                2*self.zis(theta),
+                2*self.ziiis(theta),
+                2*self.ziv(theta),
+            )
         else:
             return min(
                 self.zim(theta),
@@ -236,3 +241,40 @@ class WoodDowel:
 
         #     k3_ = Math.Sqr(k3_) - 1
         return math.sqrt(k3) - 1
+
+    # ======================
+    # =   Static Helpers   =
+    # ======================
+
+    @staticmethod
+    def fe(d: float, g: float = 0.50, theta: float = 90.0) -> float:
+        """ Compute effective wood bearing strength.
+
+        Parameters
+        ----------
+        d : float
+            Dowel diameter.
+        g : float, optional
+            Specific gravity, by default 0.50
+        theta : float, optional
+            Angle of dowel load relative to grain, by default 90.0 degrees.
+
+        Returns
+        -------
+        float
+        """
+        if d < 0.25:
+            # FE = 16600 * (G ^ 1.84)
+            return 16600.0*(g**1.84)
+
+        else:
+            # FEII = 11200 * G
+            # FET = (6100 * (G ^ 1.45)) / Math.Sqr(D)
+            # rTheta = 3.14159265359 * Theta / 180
+            # FE = (FEII * FET) / (FEII * (Math.Sin(rTheta) ^ 2) + FET * (Math.Cos(rTheta) ^ 2))
+            fe_ii = 11200.0*g
+            fe_t = (6100.0*(g**1.45))/math.sqrt(d)
+            return (
+                (fe_ii*fe_t)/(fe_ii*(math.sin(math.radians(theta))**2)
+                              + fe_t*(math.cos(math.radians(theta))**2))
+            )
