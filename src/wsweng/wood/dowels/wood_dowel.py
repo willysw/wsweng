@@ -455,34 +455,34 @@ class WoodDowel:
         # Main member
         if self.fe_main is not None:
             str_args.update(TM="(FE)",
-                            Lm=str_args["Lm"] + f", ({self.fe_main/1000:#.4g}ksi)")
+                            Lm=str_args["Lm"] + f", ({self.fe_main/1000:#.3g}ksi)")
         else:
             str_args.update(TM="(G)",
                             Lm=str_args["Lm"] + f", ({self.gm:#.2f})")
         # Side member
         if self.fe_side is not None:
             str_args.update(TS="(FE)",
-                            Ls=str_args["Ls"] + f", ({self.fe_side/1000:#.4g}ksi)")
+                            Ls=str_args["Ls"] + f", ({self.fe_side/1000:#.3g}ksi)")
         else:
             str_args.update(TS="(G)",
                             Ls=str_args["Ls"] + f", ({self.gs:#.2f})")
         return str_args
 
-    _STR_REPL = (
+    _STR_REPR = (
         # header
         "WoodDowel ({S} shear):\n"
-        "   Deff     Zpar    Zperp      W         Lm, {TM}           Ls, {TS}\n"
-        " -------  -------  -------  -------  ----------------  ----------------\n"
-        # <-------><-------><-------><-------><----------------><---------------->
-        "{De:^9s}{Zt:^9s}{Zp:^9s}{W:^9s}{Lm:^18s}{Ls:^18s}\n"
+        "   Deff     Zpar    Zperp      W          Lm, {TM}            Ls, {TS}\n"
+        " -------  -------  -------  -------  ------------------  ------------------\n"
+        # <-------><-------><-------><-------><------------------><------------------>
+        "{De:^9s}{Zt:^9s}{Zp:^9s}{W:^9s}{Lm:^20s}{Ls:^20s}\n"
     )
 
     def __str__(self) -> str:
-        return self._STR_REPL.format(**self._collect_args())
+        return self._STR_REPR.format(**self._collect_args())
 
     # === Jupyter ===
 
-    _MARKDOWN_REPL = (
+    _MARKDOWN_REPR = (
         # header
         "| ***Dowel***  | $D_e$ | $Z_{{\\parallel}}$ | $Z_{{\\perp}}$"
         "| $W$ | $L_m,\\,{TM}$ | $L_s,\,{TS}$ |\n"
@@ -492,5 +492,5 @@ class WoodDowel:
         "| *({S})* | {De} | {Zt} | {Zp} | {W} | {Lm} | {Ls} |\n"
     )
 
-    def _repl_markdown_(self) -> str:
-        return(self._MARKDOWN_REPL.format(**self._collect_args()))
+    def _repr_markdown_(self) -> str:
+        return(self._MARKDOWN_REPR.format(**self._collect_args()))
