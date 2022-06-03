@@ -1,0 +1,232 @@
+STEEL:
+  CLASS: material.Steel
+  TYPE:
+
+    A36:
+      name: ASTM A36, 36ksi
+      Fy: 36.0E+3
+      Fu: 58.0E+3
+      Ry: 1.50
+      Rt: 1.50
+      E: 29.0E+6
+      specific_gravity: 7.80
+      poissons_ratio: 0.30
+
+    A992:
+      name: ASTM A992, 50ksi
+      Fy: 50.0E+3
+      Fu: 65.0E+3
+      Ry: 1.10
+      Rt: 1.10
+      E: 29.0E+6
+      specific_gravity: 7.80
+      poissons_ratio: 0.30
+
+    A572:
+      name: ASTM A572, 50ksi
+      Fy: 50.0E+3
+      Fu: 65.0E+3
+      Ry: 1.10
+      Rt: 1.10
+      E: 29.0E+6
+      specific_gravity: 7.80
+      poissons_ratio: 0.30
+
+    A500B-Rect:
+      name: ASTM A500 GrB, Rectangular, 46ksi
+      Fy: 46.0E+3
+      Fu: 58.0E+3
+      Ry: 1.40
+      Rt: 1.20
+      E: 29.0E+6
+      specific_gravity: 7.80
+      poissons_ratio: 0.30
+
+    A500B-Round:
+      name: ASTM A500 GrB, Round, 42ksi
+      Fy: 42.0E+3
+      Fu: 58.0E+3
+      Ry: 1.40
+      Rt: 1.20
+      E: 29.0E+6
+      specific_gravity: 7.80
+      poissons_ratio: 0.30
+
+WOOD:
+  CLASS: material.Wood
+  TYPE:
+
+    Douglas Fir-Larch:
+      DFL-SS:
+        grade: Select Structural
+        name: Douglas Fir-Larch, Select Structural
+        Fb: 1500.0
+        Ft: 1000.0
+        Fv: 180.0
+        Fcp: 625.0
+        Fc: 1700.0
+        E: 1.9E+6
+        Emin: 0.69E+6
+        specific_gravity: 0.50
+        poissons_ratio: 0.35
+
+      DFL-No1:
+        grade: No 1
+        name: Douglas Fir-Larch, No 1
+        Fb: 1000.0
+        Ft: 675.0
+        Fv: 180.0
+        Fcp: 625.0
+        Fc: 1500.0
+        E: 1.7E+6
+        Emin: 0.62E+6
+        specific_gravity: 0.50
+        poissons_ratio: 0.35
+
+      DFL-No2:
+        grade: No 2
+        name: Douglas Fir-Larch, No 2
+        Fb: 900.0
+        Ft: 575.0
+        Fv: 180.0
+        Fcp: 625.0
+        Fc: 1350.0
+        E: 1.6E+6
+        Emin: 0.58E+6
+        specific_gravity: 0.50
+        poissons_ratio: 0.35
+
+      DFL-Stud:
+        grade: Stud
+        name: Douglas Fir-Larch, Stud
+        Fb: 700.0
+        Ft: 450.0
+        Fv: 180.0
+        Fcp: 625.0
+        Fc: 850.0
+        E: 1.4E+6
+        Emin: 0.51E+6
+        specific_gravity: 0.50
+        poissons_ratio: 0.35
+
+    Hem-Fir:
+      HF-SS:
+        grade: Select Structural
+        name: Hem-Fir, Select Structural
+        Fb: 1400.0
+        Ft: 925.0
+        Fv: 150.0
+        Fcp: 405.0
+        Fc: 1500.0
+        E: 1.6E+6
+        Emin: 0.58E+6
+        specific_gravity: 0.43
+        poissons_ratio: 0.35
+
+      HF-No1:
+        grade: No 1
+        name: Hem-Fir, No 1
+        Fb: 975.0
+        Ft: 625.0
+        Fv: 150.0
+        Fcp: 405.0
+        Fc: 1350.0
+        E: 1.5E+6
+        Emin: 0.55E+6
+        specific_gravity: 0.43
+        poissons_ratio: 0.35
+
+      HF-No2:
+        grade: No 2
+        name: Hem-Fir, No 2
+        Fb: 850.0
+        Ft: 525.0
+        Fv: 150.0
+        Fcp: 405.0
+        Fc: 1300.0
+        E: 1.3E+6
+        Emin: 0.47E+6
+        specific_gravity: 0.43
+        poissons_ratio: 0.35
+
+      HF-Stud:
+        grade: Stud
+        name: Hem-Fir, Stud
+        Fb: 675.0
+        Ft: 400.0
+        Fv: 150.0
+        Fcp: 405.0
+        Fc: 800.0
+        E: 1.2E+6
+        Emin: 0.44E+6
+        specific_gravity: 0.43
+        poissons_ratio: 0.35
+
+    GLB-DF/DF:
+      24F-V4:
+        grade: 24F-V4
+        name: 24F-V4, DF/DF
+        Fb: 2400.0
+        Ft: 1100.0
+        Fv: 265.0
+        Fcp: 650.0
+        Fc: 1650.0
+        E: 1.8E+6
+        Emin: 0.95E+6
+        specific_gravity: 0.50
+        poissons_ratio: 0.35
+
+      24F-V8:
+        grade: 24F-V8
+        name: 24F-V8, DF/DF
+        Fb: 2400.0
+        Ft: 1100.0
+        Fv: 265.0
+        Fcp: 650.0
+        Fc: 1650.0
+        E: 1.8E+6
+        Emin: 0.95E+6
+        specific_gravity: 0.50
+        poissons_ratio: 0.35
+
+    LVL:
+      LVL-2.0E:
+        grade: 2.0E
+        name: LVL 2.0E
+        Fb: 2600.0
+        Ft: 1895.0
+        Fv: 285.0
+        Fcp: 750.0
+        Fc: 2510.0
+        E: 2.0E+6
+        Emin: 1.02E+6
+        specific_gravity: 0.50
+        poissons_ratio: 0.35
+
+    PSL:
+      PSL-2.2E:
+        grade: 2.2E
+        name: PSL 2.2E
+        Fb: 2900.0
+        Ft: 2300.0
+        Fv: 290.0
+        Fcp: 625.0
+        Fc: 2900.0
+        E: 2.2E+6
+        Emin: 1.12E+6
+        specific_gravity: 0.50
+        poissons_ratio: 0.35
+
+    LSL:
+      LSL-1.55E:
+        grade: 1.55E
+        name: LSL 1.55E
+        Fb: 2325.0
+        Ft: 1290.0
+        Fv: 310.0
+        Fcp: 900.0
+        Fc: 1270.0
+        E: 1.55E+6
+        Emin: 0.79E+6
+        specific_gravity: 0.50
+        poissons_ratio: 0.35
