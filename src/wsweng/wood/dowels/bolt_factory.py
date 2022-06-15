@@ -1,4 +1,4 @@
-from pathlib import Path
+from dataclasses import dataclass, KW_ONLY
 import pandas as pd
 
 from wsweng.data import load_csv
